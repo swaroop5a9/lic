@@ -8,16 +8,8 @@ import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom'
 
 class Header extends React.Component {
-  handleClick=(action)=>{
-    var url
-    if(action==='home'){
-      url='home'
-    }else if(action==='allpolicies'){
-      url='policies'
-    }else if(action==='expiringpolicies'){
-      url='expiringpolicies'
-    }
-    this.props.history.push('/'+url)
+  handleClick=(actionURL)=> {
+    this.props.history.push('/'+actionURL)
   }
   render() {
     return (
@@ -30,8 +22,8 @@ class Header extends React.Component {
           <Typography variant="h6" color="inherit" >
           <Button onClick={()=>this.handleClick('home')}>Our LIC</Button>
           </Typography>
-          <Button onClick={()=>this.handleClick('allpolicies')}>All policies</Button>
-          <Button onClick={()=>this.handleClick('expiringpolicies')}>Expiring policies</Button>
+          <Button onClick={()=>this.handleClick('policies')}>All policies</Button>
+          <Button onClick={()=>this.handleClick('expiring-policies')}>Expiring policies</Button>
         </Toolbar>
       </AppBar>
     )

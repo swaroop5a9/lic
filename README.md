@@ -10,3 +10,7 @@ Demo Lic project
 + Run the following command to start the developement server
 
     `npm start` or `yarn start`
+
++ Run the following command to build the project
+
+    `npm run build` or `yarn build`

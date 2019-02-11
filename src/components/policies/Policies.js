@@ -34,7 +34,6 @@ class Policies extends React.Component {
         // console.log(this.state.policies)
         return (
             <div>
-                <Header />
                 
                 <div>
                 {/* <Button variant="contained" color="secondary" style={{float:'right'}}>Add Policy</Button> */}

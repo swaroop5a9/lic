@@ -5,8 +5,7 @@ import {
     TableHead,
     TableRow,
     TableCell,
-    TableBody,
-    Button
+    TableBody
 } from '@material-ui/core';
 
 class Policies extends React.Component {

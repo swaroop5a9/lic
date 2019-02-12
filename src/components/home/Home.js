@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@material-ui/core";
 import ExpiringPolicies from "./ExpiringPolicies";
-import { withRouter } from "react-router-dom";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);

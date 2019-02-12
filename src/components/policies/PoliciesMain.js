@@ -6,8 +6,6 @@ class PoliciesMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isError: false,
-      // policies: [],
       open: false
     };
   }

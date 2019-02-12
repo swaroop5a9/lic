@@ -8,7 +8,7 @@ import {
     TableBody,
     Button
 } from '@material-ui/core';
-import Header from '../home/Header';
+
 class Policies extends React.Component {
     constructor(props){
         super(props)
@@ -31,7 +31,6 @@ class Policies extends React.Component {
         })
     }
     render() {
-        // console.log(this.state.policies)
         return (
             <div>
                 

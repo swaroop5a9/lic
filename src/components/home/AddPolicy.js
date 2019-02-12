@@ -2,7 +2,6 @@ import React from "react";
 import { addPolicy } from "../../services/PolicyService";
 import { Button, TextField, Typography } from "@material-ui/core";
 import Close from "mdi-material-ui/Close";
-import { withRouter } from "react-router-dom";
 
 class AddPolicy extends React.Component {
   constructor(props) {

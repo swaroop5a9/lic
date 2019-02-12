@@ -20,13 +20,6 @@ code {
   cursor: pointer;
 }
 
-.card {
-  min-width: 275px;
-  width: 75%;
-  margin-left: 14%;
-  margin-top: 2%;
-}
-
 @media screen and (max-width: 599px) {
   .drawer>div:nth-child(2) {
     width: 100%;

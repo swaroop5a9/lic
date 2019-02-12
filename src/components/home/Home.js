@@ -29,7 +29,7 @@ class Home extends React.Component {
     
     return (
       <div>
-        <Card className="card">
+        <Card>
           <CardContent>            
             <ExpiringPolicies />
           </CardContent>          

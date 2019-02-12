@@ -1,6 +1,6 @@
 import React from "react";
 import { addPolicy } from "../../services/PolicyService";
-import { Button, Drawer, TextField, Typography } from "@material-ui/core";
+import { Button, TextField, Typography } from "@material-ui/core";
 import Close from "mdi-material-ui/Close";
 import { withRouter } from "react-router-dom";
 
@@ -39,11 +39,9 @@ class AddPolicy extends React.Component {
     ) {
       this.setState({ isError: true });
     } else {
-      // let policies = [...this.state.policies];
       let result = addPolicy(this.state.policy);
       if (result) {
         this.props.onPolicyAdd(result);
-        // this.props.history.push("/policies");
       }
     }
   };
@@ -59,11 +57,10 @@ class AddPolicy extends React.Component {
   };
 
   render() {
-    const cutomisedStyle = { margin: 20 };
     return (
       <div>
-        <div style={cutomisedStyle}>
-          <Typography style={{ fontSize: 24, textAlign: "center" }}>
+        <div>
+          <Typography>
             Add Policy
           </Typography>
           <Close

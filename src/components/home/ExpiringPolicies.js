@@ -18,7 +18,7 @@ class ExpiringPolicies extends React.Component {
         return (
             <div>
                 <div>
-                    <Typography variant="h6" id="tableTitle" style={{ float: 'left', paddingLeft: '2%' }}>Expiring Policies</Typography>
+                    <Typography variant="h6" id="tableTitle">Expiring Policies</Typography>
                 </div>
                 <div>
                     <Table variant="outlined">

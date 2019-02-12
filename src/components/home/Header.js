@@ -15,9 +15,9 @@ class Header extends React.Component {
     return (
       <AppBar position="static">
         <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
+          {/* <IconButton color="inherit" aria-label="Menu">
             <MenuIcon/>
-          </IconButton>
+          </IconButton> */}
           
           <Typography variant="h6" color="inherit" >
           <Button onClick={()=>this.handleClick('home')}>Our LIC</Button>

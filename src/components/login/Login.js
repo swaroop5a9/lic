@@ -65,8 +65,8 @@ class Login extends React.Component {
 
         return (
             <div>
-                {/* <Card> style={{ minWidth: 275 }} */}
-                <Card style={{ width: 275, display: 'inline-block' }}>
+                
+                <Card>
                     <CardContent>
                         <Typography color="textPrimary">
                             Login Page

@@ -36,9 +36,8 @@ class Policies extends React.Component {
             <div>
                 
                 <div>
-                {/* <Button variant="contained" color="secondary" style={{float:'right'}}>Add Policy</Button> */}
-                    <Typography variant="h6" id="tableTitle" 
-                    style={{ float: 'left', paddingLeft: '2%' }}>All Policies</Typography>
+                
+                    <Typography variant="h6" id="tableTitle" >All Policies</Typography>
                 </div>
                 <div>
                     <Table variant="outlined">

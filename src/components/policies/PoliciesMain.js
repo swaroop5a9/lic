@@ -27,7 +27,6 @@ class PoliciesMain extends React.Component {
   };
 
   render() {
-    const aStyle = { width: "50%" };
     return (
       <div>
         <Button color="secondary" variant="contained" onClick={()=>this.toggleDrawer(true)}>Add Policy</Button>
@@ -36,7 +35,6 @@ class PoliciesMain extends React.Component {
           className="drawer"
           anchor="right"
           open={this.state.open}
-          style={aStyle}
         >
           <AddPolicy
             closeDrawer={this.toggleDrawer}

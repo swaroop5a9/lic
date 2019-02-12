@@ -1,9 +1,7 @@
 import React from "react";
-import { Button, Card, Drawer, CardContent } from "@material-ui/core";
+import { Card, CardContent } from "@material-ui/core";
 import ExpiringPolicies from "./ExpiringPolicies";
-import Header from "./Header";
 import { withRouter } from "react-router-dom";
-import AddPolicy from "./AddPolicy";
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +26,7 @@ class Home extends React.Component {
   };
 
   render() {
-    const aStyle = { width: "50%" };
+    
     return (
       <div>
         <Card className="card">
@@ -36,14 +34,6 @@ class Home extends React.Component {
             <ExpiringPolicies />
           </CardContent>          
         </Card>
-        {/* <Drawer
-          className="drawer"
-          anchor="right"
-          open={this.state.open}
-          style={aStyle}
-        >
-          <AddPolicy closeDrawer={this.toggleDrawer} onPolicyAdd={this.onPolicyAdd} />
-        </Drawer> */}
       </div>
     );
   }

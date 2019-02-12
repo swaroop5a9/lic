@@ -201,7 +201,7 @@ class AddPolicy extends React.Component {
             onClick={this.handleSave}
           >
             Save
-          </Button>
+          </Button><br/><br/><br/><br/>
         </div>
       </div>
     );

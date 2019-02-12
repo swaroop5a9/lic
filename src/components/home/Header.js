@@ -17,7 +17,7 @@ class Header extends React.Component {
           <Button onClick={()=>this.handleClick('home')}>Our LIC</Button>
           </Typography>
           <Button onClick={()=>this.handleClick('policies')}>All policies</Button>
-          <Button onClick={()=>this.handleClick('expiring-policies')}>Expiring policies</Button>
+          <Button onClick={()=>this.handleClick('home')}>Expiring policies</Button>
         </Toolbar>
       </AppBar>
     )

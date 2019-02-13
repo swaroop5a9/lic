@@ -31,7 +31,9 @@ class Policies extends React.Component {
     });
   }
 
-  handlePencilClick = () => {};
+  handlePencilClick = () => {
+    this.props.editPolicy(true)
+  };
   render() {
     return (
       <div>
@@ -54,7 +56,7 @@ class Policies extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.policies.map((policy, index) => (
+              {this.state.policies && this.state.policies.map((policy, index) => (
                 <TableRow key={index}>
                   <TableCell>{policy.holderName}</TableCell>
                   <TableCell>{policy.policyNumber}</TableCell>

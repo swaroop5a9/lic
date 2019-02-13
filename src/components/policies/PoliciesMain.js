@@ -24,11 +24,16 @@ class PoliciesMain extends React.Component {
     }
   };
 
+  editPolicy = ()=>{
+    this.toggleDrawer(true);
+  }
+  
+
   render() {
     return (
       <div>
         <Button color="secondary" variant="contained" onClick={()=>this.toggleDrawer(true)}>Add Policy</Button>
-        <Policies />
+        <Policies editPolicy={this.editPolicy}/>
         <Drawer
           className="drawer"
           anchor="right"

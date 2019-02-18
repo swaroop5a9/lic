@@ -9,7 +9,7 @@ class AddPolicy extends React.Component {
     this.state = {
       isError: false,
       policy: {
-        holderName: "",
+        fullName: "",
         policyNumber: "",
         paymentMode: "",
         dateOfPayment: "",
@@ -25,7 +25,7 @@ class AddPolicy extends React.Component {
 
   handleSave = () => {
     if (
-      this.state.policy.holderName === "" ||
+      this.state.policy.fullName === "" ||
       this.state.policy.policyNumber === "" ||
       this.state.policy.paymentMode === "" ||
       this.state.policy.dateOfPayment === "" ||
@@ -73,10 +73,10 @@ class AddPolicy extends React.Component {
             margin="normal"
             variant="outlined"
             label="Policy Holder name"
-            name="holderName"
-            id="holderName"
+            name="fullName"
+            id="fullName"
             InputLabelProps={{ shrink: true }}
-            error={this.state.isError && this.state.policy.holderName === ""}
+            error={this.state.isError && this.state.policy.fullName === ""}
           />
 
           <TextField

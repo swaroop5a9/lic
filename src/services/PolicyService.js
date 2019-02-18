@@ -1,4 +1,5 @@
 import Axios from "axios";
+const API_PATH = "https://dry-falls-40595.herokuapp.com";
 
 export const getExpiringPolicies = () => {
   var json = [
@@ -53,20 +54,11 @@ export const getExpiringPolicies = () => {
   ];
   return json;
 };
-
-export const getAllPolicies = () => {
-  var data
-
-  Axios.get('https://dry-falls-40595.herokuapp.com/policies').then(function (response) {
-    // handle success
-    console.log('aasdf' + response);
-  }).catch(response=>{console.log(response)});
-  
-  console.log(data);
-  let policies = localStorage.getItem("policies");
-  if (policies !== null) {
-    return JSON.parse(policies);
-  } else {
+export const getAllPolicies = async (range = "all") => {
+  try {
+    let response = await Axios.get(API_PATH + "/policies?range=" + range);
+    return response.data.data;
+  } catch (error) {
     return [];
   }
 };

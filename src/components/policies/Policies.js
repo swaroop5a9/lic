@@ -12,28 +12,6 @@ import MinusCircle from "mdi-material-ui/MinusCircle";
 import { getAllPolicies } from "../../services/PolicyService";
 
 class Policies extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      policies: {}
-    };
-  }
-
-  componentWillMount() {
-    console.log(getAllPolicies())
-    var policies = JSON.parse(localStorage.getItem("policies"));
-    this.setState({
-      policies: policies
-    });
-  }
-
-  UNSAFE_componentWillReceiveProps() {
-    var policies = JSON.parse(localStorage.getItem("policies"));
-    this.setState({
-      policies: policies
-    });
-  }
-
   handlePencilClick = () => {
     this.props.editPolicy(true)
   };
@@ -63,9 +41,9 @@ class Policies extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.policies && this.state.policies.map((policy, index) => (
+              {this.props.policies.length >0 && this.props.policies.map((policy, index) => (
                 <TableRow key={index}>
-                  <TableCell>{policy.holderName}</TableCell>
+                  <TableCell>{policy.fullName}</TableCell>
                   <TableCell>{policy.policyNumber}</TableCell>
                   <TableCell>{policy.mobileNumber}</TableCell>
                   <TableCell>{policy.amount}</TableCell>

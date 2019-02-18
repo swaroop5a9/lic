@@ -120,6 +120,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            type="number"
             margin="normal"
             variant="outlined"
             label="Amount"
@@ -132,6 +133,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            type="number"
             margin="normal"
             variant="outlined"
             label="Tenure"

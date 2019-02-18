@@ -8,6 +8,8 @@ import {
   TableBody
 } from "@material-ui/core";
 import Pencil from "mdi-material-ui/Pencil";
+import MinusCircle from "mdi-material-ui/MinusCircle";
+import { getAllPolicies } from "../../services/PolicyService";
 
 class Policies extends React.Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Policies extends React.Component {
   }
 
   componentWillMount() {
+    console.log(getAllPolicies())
     var policies = JSON.parse(localStorage.getItem("policies"));
     this.setState({
       policies: policies
@@ -33,6 +36,10 @@ class Policies extends React.Component {
 
   handlePencilClick = () => {
     this.props.editPolicy(true)
+  };
+
+  handleMinusClick = () => {
+    // Delete policy
   };
   render() {
     return (
@@ -65,7 +72,10 @@ class Policies extends React.Component {
                   <TableCell>{policy.email}</TableCell>
                   <TableCell>{policy.dateOfPayment}</TableCell>
                   <TableCell>
-                    <Pencil onClick={() => this.handlePencilClick(index)} />
+                    <span>
+                      <Pencil onClick={() => this.handlePencilClick(index)} />
+                      <MinusCircle onClick={() => this.handleMinusClick(index)} />
+                    </span>
                   </TableCell>
                 </TableRow>
               ))}

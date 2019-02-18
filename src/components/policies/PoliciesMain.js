@@ -2,11 +2,13 @@ import React from "react";
 import Policies from "./Policies";
 import { Button, Drawer } from "@material-ui/core";
 import AddPolicy from "../home/AddPolicy";
+import SuccessSnackBar from "../common/SuccessSnackBar";
 class PoliciesMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      snackbarOpen : false
     };
   }
 
@@ -16,9 +18,16 @@ class PoliciesMain extends React.Component {
     });
   };
 
+  toggleSnackbar = open => {
+    this.setState({
+      snackbarOpen: open
+    });
+  };
+
   onPolicyAdd = result => {
     if (result) {
       this.toggleDrawer(false);
+      this.toggleSnackbar(true)
     } else {
       //do something
     }
@@ -44,6 +53,7 @@ class PoliciesMain extends React.Component {
             onPolicyAdd={this.onPolicyAdd}
           />
         </Drawer>
+        <SuccessSnackBar open={this.state.snackbarOpen} handleClose = {()=>this.toggleSnackbar(false)}/>
       </div>
     );
   }

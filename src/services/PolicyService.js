@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 export const getExpiringPolicies = () => {
   var json = [
     {
@@ -53,6 +55,14 @@ export const getExpiringPolicies = () => {
 };
 
 export const getAllPolicies = () => {
+  var data
+
+  Axios.get('https://dry-falls-40595.herokuapp.com/policies').then(function (response) {
+    // handle success
+    console.log('aasdf' + response);
+  }).catch(response=>{console.log(response)});
+  
+  console.log(data);
   let policies = localStorage.getItem("policies");
   if (policies !== null) {
     return JSON.parse(policies);

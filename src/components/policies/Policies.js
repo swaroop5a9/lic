@@ -11,8 +11,8 @@ import Pencil from "mdi-material-ui/Pencil";
 import MinusCircle from "mdi-material-ui/MinusCircle";
 
 class Policies extends React.Component {
-  handlePencilClick = () => {
-    this.props.editPolicy(true)
+  handleEditPolicy = (policy) => {
+    this.props.editPolicy(policy)
   };
 
   handleMinusClick = () => {
@@ -50,7 +50,7 @@ class Policies extends React.Component {
                   <TableCell>{policy.dateOfPayment}</TableCell>
                   <TableCell>
                     <span>
-                      <Pencil onClick={() => this.handlePencilClick(index)} />
+                      <Pencil onClick={() => this.handleEditPolicy(policy)} />
                       <MinusCircle onClick={() => this.handleMinusClick(index)} />
                     </span>
                   </TableCell>

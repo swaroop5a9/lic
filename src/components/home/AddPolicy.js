@@ -6,9 +6,13 @@ import Close from "mdi-material-ui/Close";
 class AddPolicy extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isError: false,
-      policy: {
+    let policy;
+    let isEdit;
+    if (props.policy !== undefined) {
+      policy = props.policy;
+      isEdit = true;
+    } else {
+      policy = {
         fullName: "",
         policyNumber: "",
         policyName: "",
@@ -21,11 +25,17 @@ class AddPolicy extends React.Component {
         email: "",
         address: "",
         nomineeName: ""
-      }
+      };
+      isEdit = false;
+    }
+    this.state = {
+      isError: false,
+      policy: policy,
+      isEdit: isEdit
     };
   }
 
-  handleSave = () => {
+  handleSave = async () => {
     if (
       this.state.policy.fullName === "" ||
       this.state.policy.policyNumber === "" ||
@@ -42,20 +52,10 @@ class AddPolicy extends React.Component {
     ) {
       this.setState({ isError: true });
     } else {
-     
-      this.addPolicy(this.state.policy);
-      // if (result) {
-      //   this.props.onPolicyAdd(result);
-      // }
-    }
-  };
-
-  addPolicy = async (policy) =>{
-    let result = await addPolicy(this.state.policy);
-    if (result) {
+      let result = await addPolicy(this.state.policy, this.state.isEdit);
       this.props.onPolicyAdd(result);
     }
-  }
+  };
 
   handleChange = event => {
     const eve = { ...event };
@@ -71,17 +71,16 @@ class AddPolicy extends React.Component {
     return (
       <div>
         <div>
-          <Typography>
-            Add Policy
-          </Typography>
+          <Typography>Add Policy</Typography>
           <Close
             className="closeDrawer"
-            onClick={()=>this.props.closeDrawer(false)}
+            onClick={() => this.props.closeDrawer(false)}
           />
           <TextField
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.fullName}
             margin="normal"
             variant="outlined"
             label="Policy Holder name"
@@ -95,6 +94,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.policyNumber}
             margin="normal"
             variant="outlined"
             label="Policy Number"
@@ -107,6 +107,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.policyName}
             margin="normal"
             variant="outlined"
             label="Policy Name"
@@ -119,6 +120,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.policyType}
             margin="normal"
             variant="outlined"
             label="Policy Type"
@@ -131,6 +133,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.paymentMode}
             margin="normal"
             variant="outlined"
             label="Payment Mode"
@@ -144,6 +147,7 @@ class AddPolicy extends React.Component {
             type="date"
             required
             fullWidth
+            value={this.state.policy.dateOfPayment}
             margin="normal"
             variant="outlined"
             label="Date of Payment"
@@ -156,6 +160,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.amount}
             type="number"
             margin="normal"
             variant="outlined"
@@ -169,6 +174,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.tenure}
             type="number"
             margin="normal"
             variant="outlined"
@@ -182,6 +188,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.mobileNumber}
             type="number"
             margin="normal"
             variant="outlined"
@@ -196,6 +203,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.email}
             margin="normal"
             variant="outlined"
             label="Email"
@@ -210,6 +218,7 @@ class AddPolicy extends React.Component {
             fullWidth
             margin="normal"
             multiline
+            value={this.state.policy.address}
             variant="outlined"
             label="Address"
             rows="5"
@@ -222,6 +231,7 @@ class AddPolicy extends React.Component {
             onChange={this.handleChange}
             required
             fullWidth
+            value={this.state.policy.nomineeName}
             margin="normal"
             variant="outlined"
             label="Nominee Name"
@@ -239,7 +249,11 @@ class AddPolicy extends React.Component {
             onClick={this.handleSave}
           >
             Save
-          </Button><br/><br/><br/><br/>
+          </Button>
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     );

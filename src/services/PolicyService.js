@@ -63,13 +63,14 @@ export const getAllPolicies = async (range = "all") => {
   }
 };
 
-export const addPolicy = async (policy) => {
+export const addPolicy = async (policy, isEdit) => {
   try {
-    let response = await Axios.Post(API_PATH + "/policies", { policy: policy });
-    console.log("asdfghg" + response)
-    return response.data.data;
+    let response = isEdit
+      ? await Axios.put(API_PATH + "/policies/" + policy._id, policy)
+      : await Axios.post(API_PATH + "/policies", policy);
+    return response.data;
   } catch (error) {
-    return [];
+    console.log("error", error.response.data);
+    return error.response.data;
   }
-  // return true;
 };

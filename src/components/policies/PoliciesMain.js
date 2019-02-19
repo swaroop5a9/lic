@@ -2,29 +2,33 @@ import React from "react";
 import Policies from "./Policies";
 import { Button, Drawer, Select, MenuItem } from "@material-ui/core";
 import AddPolicy from "../home/AddPolicy";
-import SuccessSnackBar from "../common/SuccessSnackBar";
 import { getAllPolicies } from "../../services/PolicyService";
+import CustomSnackbar from "../common/CustomSnackbar";
 class PoliciesMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      snackbarOpen: false,
-      policies : []
+      selectedPolicy: undefined,
+      snackBar: {
+        open: false,
+        variant: "",
+        message: ""
+      },
+      policies: []
     };
   }
 
-  
   async componentDidMount() {
     await this.getPolicies("all");
   }
 
-  getPolicies = async (range) => {
+  getPolicies = async range => {
     var policies = await getAllPolicies(range);
     this.setState({
       policies: policies
     });
-  }
+  };
 
   toggleDrawer = open => {
     this.setState({
@@ -32,23 +36,43 @@ class PoliciesMain extends React.Component {
     });
   };
 
-  toggleSnackbar = open => {
+  handleSnackBarClose = () => {
     this.setState({
-      snackbarOpen: open
+      snackBar: {
+        open: false
+      }
+    });
+  };
+
+  toggleSnackbar = (open, message, variant) => {
+    this.setState({
+      snackBar: {
+        open: open,
+        message: message,
+        variant: variant
+      }
     });
   };
 
   onPolicyAdd = result => {
-    if (result) {
+    if (result.success) {
       this.toggleDrawer(false);
-      this.toggleSnackbar(true);
+      let data = [...this.state.policies];
+      data.unshift(result.data);
+      this.setState({
+        policies: data
+      });
+      this.toggleSnackbar(true, result.message, "success");
     } else {
-      //do something
+      this.toggleSnackbar(true, result.message, "error");
     }
   };
 
-  editPolicy = () => {
+  editPolicy = policy => {
     this.toggleDrawer(true);
+    this.setState({
+      selectedPolicy: policy
+    });
   };
 
   handleChange = async event => {
@@ -91,17 +115,22 @@ class PoliciesMain extends React.Component {
             <em>Three Months</em>
           </MenuItem>
         </Select>
-        <Policies editPolicy={this.editPolicy} policies = {this.state.policies}/>
+        <Policies editPolicy={this.editPolicy} policies={this.state.policies} />
         <Drawer className="drawer" anchor="right" open={this.state.open}>
           <AddPolicy
             closeDrawer={this.toggleDrawer}
             onPolicyAdd={this.onPolicyAdd}
+            policy={this.state.selectedPolicy}
           />
         </Drawer>
-        <SuccessSnackBar
-          open={this.state.snackbarOpen}
-          handleClose={() => this.toggleSnackbar(false)}
-        />
+        {this.state.snackBar.open && (
+          <CustomSnackbar
+            isOpen={this.state.snackBar.open}
+            message={this.state.snackBar.message}
+            variant={this.state.snackBar.variant}
+            onClose={this.handleSnackBarClose}
+          />
+        )}
       </div>
     );
   }

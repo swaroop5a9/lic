@@ -11,6 +11,8 @@ class AddPolicy extends React.Component {
       policy: {
         fullName: "",
         policyNumber: "",
+        policyName: "",
+        policyType: "",
         paymentMode: "",
         dateOfPayment: "",
         amount: "",
@@ -27,6 +29,8 @@ class AddPolicy extends React.Component {
     if (
       this.state.policy.fullName === "" ||
       this.state.policy.policyNumber === "" ||
+      this.state.policy.policyName === "" ||
+      this.state.policy.policyType === "" ||
       this.state.policy.paymentMode === "" ||
       this.state.policy.dateOfPayment === "" ||
       this.state.policy.amount === "" ||
@@ -38,12 +42,20 @@ class AddPolicy extends React.Component {
     ) {
       this.setState({ isError: true });
     } else {
-      let result = addPolicy(this.state.policy);
-      if (result) {
-        this.props.onPolicyAdd(result);
-      }
+     
+      this.addPolicy(this.state.policy);
+      // if (result) {
+      //   this.props.onPolicyAdd(result);
+      // }
     }
   };
+
+  addPolicy = async (policy) =>{
+    let result = await addPolicy(this.state.policy);
+    if (result) {
+      this.props.onPolicyAdd(result);
+    }
+  }
 
   handleChange = event => {
     const eve = { ...event };
@@ -90,6 +102,30 @@ class AddPolicy extends React.Component {
             InputLabelProps={{ shrink: true }}
             id="policyNumber"
             error={this.state.isError && this.state.policy.policyNumber === ""}
+          />
+          <TextField
+            onChange={this.handleChange}
+            required
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            label="Policy Name"
+            name="policyName"
+            InputLabelProps={{ shrink: true }}
+            id="policyName"
+            error={this.state.isError && this.state.policy.policyName === ""}
+          />
+          <TextField
+            onChange={this.handleChange}
+            required
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            label="Policy Type"
+            name="policyType"
+            InputLabelProps={{ shrink: true }}
+            id="policyType"
+            error={this.state.isError && this.state.policy.policyType === ""}
           />
           <TextField
             onChange={this.handleChange}

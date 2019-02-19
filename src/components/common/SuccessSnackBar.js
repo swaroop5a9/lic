@@ -11,13 +11,14 @@ class SuccessSnackBar extends React.Component {
           vertical: 'top',
           horizontal: 'right',
         }}
+        autoHideDuration = {2000}
         open={this.props.open}
       >
         <SnackbarContent
           style={{ backgroundColor: 'green' }}
           aria-describedby="client-snackbar"
           message={
-            <span id="client-snackbar" style={{ display: 'flex' }}>
+            <span id="client-snackbar" style={styles.spanClass}>
               <CheckCircleOutline />
               Policy details added successfully
             </span>
@@ -31,6 +32,10 @@ class SuccessSnackBar extends React.Component {
       </Snackbar>
     )
   }
+}
+
+const styles = {
+  spanClass: { display: 'flex', alignItems: 'center' }
 }
 
 export default SuccessSnackBar;

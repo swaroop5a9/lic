@@ -63,9 +63,13 @@ export const getAllPolicies = async (range = "all") => {
   }
 };
 
-export const addPolicy = policy => {
-  let policies = getAllPolicies();
-  policies.push(policy);
-  localStorage.setItem("policies", JSON.stringify(policies));
-  return true;
+export const addPolicy = async (policy) => {
+  try {
+    let response = await Axios.Post(API_PATH + "/policies", { policy: policy });
+    console.log("asdfghg" + response)
+    return response.data.data;
+  } catch (error) {
+    return [];
+  }
+  // return true;
 };

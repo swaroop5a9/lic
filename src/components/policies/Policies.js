@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import Pencil from "mdi-material-ui/Pencil";
 import MinusCircle from "mdi-material-ui/MinusCircle";
-import { getAllPolicies } from "../../services/PolicyService";
 
 class Policies extends React.Component {
   handlePencilClick = () => {

@@ -52,7 +52,6 @@ class PoliciesMain extends React.Component {
   };
 
   handleChange = async event => {
-    console.log(event.target.value);
     await this.getPolicies(event.target.value);
   };
 

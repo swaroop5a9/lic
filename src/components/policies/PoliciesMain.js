@@ -1,6 +1,6 @@
 import React from "react";
 import Policies from "./Policies";
-import { Button, Drawer, Select, MenuItem } from "@material-ui/core";
+import { Button, Drawer, Select, MenuItem, CircularProgress } from "@material-ui/core";
 import AddPolicy from "../home/AddPolicy";
 import { getAllPolicies } from "../../services/PolicyService";
 import CustomSnackbar from "../common/CustomSnackbar";
@@ -15,7 +15,8 @@ class PoliciesMain extends React.Component {
         variant: "",
         message: ""
       },
-      policies: []
+      policies: [],
+      loading: false,
     };
   }
 
@@ -25,10 +26,18 @@ class PoliciesMain extends React.Component {
 
   getPolicies = async range => {
     var policies = await getAllPolicies(range);
+    this.enableLoading(true);
     this.setState({
-      policies: policies
+      policies: policies,
+      loading:false
     });
   };
+
+  enableLoading = (value) => {
+    this.setState({
+      loading: value
+    })
+  }
 
   toggleDrawer = open => {
     this.setState({
@@ -82,41 +91,45 @@ class PoliciesMain extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          color="secondary"
-          variant="contained"
-          style={styles.button}
-          onClick={() => this.toggleDrawer(true)}
-        >
-          Add Policy
+        <div>
+          <Button
+            color="secondary"
+            variant="contained"
+            style={styles.button}
+            onClick={() => this.toggleDrawer(true)}
+          >
+            Add Policy
         </Button>
-        <Select
-          value=""
-          onChange={this.handleChange}
-          style={styles.button}
-          inputProps={{
-            name: "age",
-            id: "age-simple"
-          }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="1week">
-            <em>One Week</em>
-          </MenuItem>
-          <MenuItem value="2weeks">
-            <em>Two Weeks</em>
-          </MenuItem>
-          <MenuItem value="1month">
-            <em>One Month</em>
-          </MenuItem>
-          <MenuItem value="3month">
-            <em>Three Months</em>
-          </MenuItem>
-        </Select>
-        <Policies editPolicy={this.editPolicy} policies={this.state.policies} />
-        <Drawer className="drawer" anchor="right" open={this.state.open}>
+          <Select
+            value=""
+            onChange={this.handleChange}
+            style={styles.button}
+            inputProps={{
+              name: "age",
+              id: "age-simple"
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="1week">
+              <em>One Week</em>
+            </MenuItem>
+            <MenuItem value="2weeks">
+              <em>Two Weeks</em>
+            </MenuItem>
+            <MenuItem value="1month">
+              <em>One Month</em>
+            </MenuItem>
+            <MenuItem value="3month">
+              <em>Three Months</em>
+            </MenuItem>
+          </Select>
+
+          {/* {this.state.loading && <CircularProgress size={24} variant="indeterminate" />} */}
+          <Policies editPolicy={this.editPolicy} policies={this.state.policies} />
+        </div>
+        <Drawer className="drawer" anchor="right" open={this.state.open} onClose={() => this.toggleDrawer(false)}>
           <AddPolicy
             closeDrawer={this.toggleDrawer}
             onPolicyAdd={this.onPolicyAdd}

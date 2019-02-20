@@ -10,7 +10,7 @@ import {
 import Pencil from "mdi-material-ui/Pencil";
 import MinusCircle from "mdi-material-ui/MinusCircle";
 
-class Policies extends React.Component {
+class   Policies extends React.Component {
   handleEditPolicy = (policy) => {
     this.props.editPolicy(policy)
   };

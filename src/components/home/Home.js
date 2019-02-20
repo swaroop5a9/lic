@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@material-ui/core";
 import ExpiringPolicies from "./ExpiringPolicies";
+import { getExpiringPolicies } from "../../services/PolicyService";
 
 class Home extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class Home extends React.Component {
     this.state = {
       isError: false,
       policies: [],
+      expiringPolicies: [],
       open: false
     };
   }
@@ -16,6 +18,13 @@ class Home extends React.Component {
       open: open
     });
   };
+
+componentDidMount = async () => {
+    let expiringPolicies = await getExpiringPolicies()
+    this.setState({
+        expiringPolicies: expiringPolicies
+    })
+}
 
   onPolicyAdd = result => {
     if (result) {
@@ -31,7 +40,7 @@ class Home extends React.Component {
       <div>
         <Card>
           <CardContent>            
-            <ExpiringPolicies />
+            <ExpiringPolicies expiringPolicies = {this.state.expiringPolicies}/>
           </CardContent>          
         </Card>
       </div>

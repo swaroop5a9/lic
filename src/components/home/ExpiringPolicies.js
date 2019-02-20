@@ -1,19 +1,7 @@
 import React from 'react'
 import { Table, TableHead, TableCell, TableRow, TableBody, Typography } from '@material-ui/core';
-import { getExpiringPolicies } from '../../services/PolicyService';
 class ExpiringPolicies extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            expiringPolicies: []
-        }
-    }
-    componentDidMount() {
-        const expiringPolicies = getExpiringPolicies()
-        this.setState({
-            expiringPolicies: expiringPolicies
-        })
-    }
+  
     render() {
         return (
             <div>
@@ -32,7 +20,7 @@ class ExpiringPolicies extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.expiringPolicies.map((policy, index) => (
+                            {this.props.expiringPolicies.length > 0 && this.props.expiringPolicies.map((policy, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{policy.MemberName}</TableCell>
                                     <TableCell>{policy.PolicyNumber}</TableCell>

@@ -22,11 +22,11 @@ class ExpiringPolicies extends React.Component {
                         <TableBody>
                             {this.props.expiringPolicies.length > 0 && this.props.expiringPolicies.map((policy, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{policy.MemberName}</TableCell>
-                                    <TableCell>{policy.PolicyNumber}</TableCell>
-                                    <TableCell>{policy.PhoneNumber}</TableCell>
-                                    <TableCell>{policy.Amount}</TableCell>
-                                    <TableCell>{policy.Email}</TableCell>
+                                    <TableCell>{policy.fullName}</TableCell>
+                                    <TableCell>{policy.policyNumber}</TableCell>
+                                    <TableCell>{policy.mobileNumber}</TableCell>
+                                    <TableCell>{policy.amount}</TableCell>
+                                    <TableCell>{policy.email}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

@@ -15,8 +15,8 @@ class   Policies extends React.Component {
     this.props.editPolicy(policy)
   };
 
-  handleMinusClick = () => {
-    // Delete policy
+  handleDeletePolicy = (policy) => {
+    this.props.deletePolicy(policy)
   };
   render() {
     return (
@@ -51,7 +51,7 @@ class   Policies extends React.Component {
                   <TableCell>
                     <span>
                       <Pencil onClick={() => this.handleEditPolicy(policy)} />
-                      <MinusCircle onClick={() => this.handleMinusClick(index)} />
+                      <MinusCircle onClick={() => this.handleDeletePolicy(policy)} />
                     </span>
                   </TableCell>
                 </TableRow>

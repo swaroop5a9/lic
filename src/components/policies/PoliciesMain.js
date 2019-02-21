@@ -1,8 +1,8 @@
 import React from "react";
 import Policies from "./Policies";
-import { Button, Drawer, Select, MenuItem, CircularProgress } from "@material-ui/core";
+import { Button, Drawer } from "@material-ui/core";
 import AddPolicy from "../home/AddPolicy";
-import { getAllPolicies } from "../../services/PolicyService";
+import { getAllPolicies, deletePolicy } from "../../services/PolicyService";
 import CustomSnackbar from "../common/CustomSnackbar";
 class PoliciesMain extends React.Component {
   constructor(props) {
@@ -84,8 +84,14 @@ class PoliciesMain extends React.Component {
     });
   };
 
-  handleChange = async event => {
-    await this.getPolicies(event.target.value);
+  deletePolicy = async range => {
+    var result = await deletePolicy(range);
+    if(result.success){
+      await this.getPolicies("all");
+      this.toggleSnackbar(true, result.message, "success");
+    }else{
+      this.toggleSnackbar(true, result.message, "error");
+    }
   };
 
   render() {
@@ -100,34 +106,7 @@ class PoliciesMain extends React.Component {
           >
             Add Policy
         </Button>
-          <Select
-            value=""
-            onChange={this.handleChange}
-            style={styles.button}
-            inputProps={{
-              name: "age",
-              id: "age-simple"
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="1week">
-              <em>One Week</em>
-            </MenuItem>
-            <MenuItem value="2weeks">
-              <em>Two Weeks</em>
-            </MenuItem>
-            <MenuItem value="1month">
-              <em>One Month</em>
-            </MenuItem>
-            <MenuItem value="3month">
-              <em>Three Months</em>
-            </MenuItem>
-          </Select>
-
-          {/* {this.state.loading && <CircularProgress size={24} variant="indeterminate" />} */}
-          <Policies editPolicy={this.editPolicy} policies={this.state.policies} />
+          <Policies editPolicy={this.editPolicy} policies={this.state.policies} deletePolicy={this.deletePolicy}/>
         </div>
         <Drawer className="drawer" anchor="right" open={this.state.open} onClose={() => this.toggleDrawer(false)}>
           <AddPolicy

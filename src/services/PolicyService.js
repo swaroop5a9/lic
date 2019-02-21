@@ -4,6 +4,16 @@ const API_PATH = "https://dry-falls-40595.herokuapp.com";
 export const getExpiringPolicies = async () => {
   return await getAllPolicies('1week');
 };
+
+export const deletePolicy = async (policy) => {
+  try {
+    let response = await Axios.delete(API_PATH + "/policies/"+ policy._id, policy);
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+};
+
 export const getAllPolicies = async (range = "all") => {
   try {
     let response = await Axios.get(API_PATH + "/policies?range=" + range);

@@ -44,6 +44,13 @@ class PoliciesMain extends React.Component {
       open: open
     });
   };
+ 
+  openDrawer = () => {
+    this.toggleDrawer(true)
+    this.setState({
+      selectedPolicy:undefined
+    });
+  };
 
   handleSnackBarClose = () => {
     this.setState({
@@ -104,7 +111,7 @@ class PoliciesMain extends React.Component {
             color="secondary"
             variant="contained"
             style={styles.button}
-            onClick={() => this.toggleDrawer(true)}
+            onClick={this.openDrawer}
           >
             Add Policy
         </Button>

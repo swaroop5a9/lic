@@ -63,7 +63,7 @@ class Login extends React.Component {
     render() {
 
         return (
-            <div>
+            <div  style={styles.loginForm}>
                 
                 <Card>
                     <CardContent>
@@ -94,4 +94,11 @@ class Login extends React.Component {
     }
 }
 
+const styles = {
+    loginForm: {
+      margin : '0 auto'
+    }
+  };
+
+  
 export default withRouter(Login);

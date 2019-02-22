@@ -1,6 +1,6 @@
 import React from "react";
 import Policies from "./Policies";
-import { Button, Drawer } from "@material-ui/core";
+import { Button, Drawer, Card, CardContent } from "@material-ui/core";
 import AddPolicy from "../home/AddPolicy";
 import { getAllPolicies, deletePolicy } from "../../services/PolicyService";
 import CustomSnackbar from "../common/CustomSnackbar";
@@ -96,7 +96,9 @@ class PoliciesMain extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.formLayout}>
+        <Card>
+          <CardContent>
         <div>
           <Button
             color="secondary"
@@ -123,6 +125,7 @@ class PoliciesMain extends React.Component {
             onClose={this.handleSnackBarClose}
           />
         )}
+        </CardContent></Card>
       </div>
     );
   }
@@ -131,6 +134,9 @@ class PoliciesMain extends React.Component {
 const styles = {
   button: {
     float: "right"
+  },
+  formLayout:{
+    padding: '20px'
   }
 };
 
